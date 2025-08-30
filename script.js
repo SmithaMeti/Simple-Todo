@@ -48,7 +48,7 @@ const todoAddBtn = document.querySelector(".todo-add");
             let todoElements = document.querySelectorAll(".todo-name")
             let value = todoElements[index].textContent
             let encodedValue = encodeURIComponent(value)
-            window.location.href = `update.html?message=${encodedValue}&index=${index}`
+            window.location.href = `about.html?message=${encodedValue}&index=${index}`
           })
         })
 

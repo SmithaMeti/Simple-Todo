@@ -113,7 +113,7 @@
       function saveChanges() {
         const updatedValue = document.querySelector("#displayMessage").value;
         const encodeBack = encodeURIComponent(updatedValue);
-        window.location.href = `todo.html?updatedMessage=${encodeBack}&updatedIndex=${originalIndex}`;
+        window.location.href = `index.html?updatedMessage=${encodeBack}&updatedIndex=${originalIndex}`;
       }
 
       // Allow pressing Enter to save changes
