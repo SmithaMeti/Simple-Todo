@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Update Todo</title>
+  </head>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  />
+  <style>
+    :root {
+      --primary: #6c63ff;
+      --dark: #2a2a4a;
+      --light: #f8f9fa;
+      --border-radius: 12px;
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .container {
+      background: white;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+      padding: 30px;
+      width: 100%;
+      max-width: 500px;
+      text-align: center;
+    }
+
+    h1 {
+      color: var(--primary);
+      margin-bottom: 20px;
+      font-size: 2rem;
+    }
+
+    .input-group {
+      margin-bottom: 25px;
+    }
+
+    #displayMessage {
+      width: 100%;
+      padding: 15px;
+      border: 2px solid #e0e0e0;
+      border-radius: var(--border-radius);
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    #displayMessage:focus {
+      border-color: var(--primary);
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.2);
+    }
+
+    .changingBtn {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      border-radius: var(--border-radius);
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      width: 100%;
+    }
+
+    .changingBtn:hover {
+      background: #554fd8;
+      transform: translateY(-2px);
+    }
+  </style>
+  <body>
+    <div class="container">
+      <h1><i class="fas fa-edit"></i> Updating the Todo</h1>
+      <div class="input-group">
+        <input id="displayMessage" type="text" />
+      </div>
+      <button class="changingBtn" onclick="saveChanges()">
+        <i class="fas fa-save"></i> Update Task
+      </button>
+    </div>
+
+    <script>
+      const urlParams = new URLSearchParams(window.location.search);
+
+      const message = urlParams.get("message");
+      const originalIndex = urlParams.get("index");
+
+      if (message) {
+        document.getElementById("displayMessage").value =
+          decodeURIComponent(message);
+      } else {
+        document.getElementById("displayMessage").value =
+          "No message was provided.";
+      }
+
+      function saveChanges() {
+        const updatedValue = document.querySelector("#displayMessage").value;
+        const encodeBack = encodeURIComponent(updatedValue);
+        window.location.href = `todo.html?updatedMessage=${encodeBack}&updatedIndex=${originalIndex}`;
+      }
+
+      // Allow pressing Enter to save changes
+      document
+        .getElementById("displayMessage")
+        .addEventListener("keypress", function (e) {
+          if (e.key === "Enter") {
+            saveChanges();
+          }
+        });
+    </script>
+  </body>
+</html>
