@@ -7,6 +7,7 @@
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
   />
+  
   <style>
     :root {
       --primary: #6c63ff;
@@ -36,7 +37,7 @@
       background: white;
       border-radius: var(--border-radius);
       box-shadow: var(--shadow);
-      padding: 30px;
+      padding: 25px;
       width: 100%;
       max-width: 500px;
       text-align: center;
@@ -77,12 +78,17 @@
       font-weight: 600;
       font-size: 1rem;
       transition: all 0.3s ease;
-      width: 100%;
+      width: 90%;
     }
 
     .changingBtn:hover {
       background: #554fd8;
       transform: translateY(-2px);
+    }
+
+    .btns {
+      display: flex;
+      gap: 15px;
     }
   </style>
   <body>
@@ -91,9 +97,12 @@
       <div class="input-group">
         <input id="displayMessage" type="text" />
       </div>
-      <button class="changingBtn" onclick="saveChanges()">
-        <i class="fas fa-save"></i> Update Task
-      </button>
+      <div class="btns">
+        <button class="changingBtn" onclick="back()"><i class="fa-solid fa-caret-left"></i>back</button>
+        <button class="changingBtn" onclick="saveChanges()">
+          <i class="fas fa-save"></i> Update Task
+        </button>
+      </div>
     </div>
 
     <script>
@@ -114,6 +123,10 @@
         const updatedValue = document.querySelector("#displayMessage").value;
         const encodeBack = encodeURIComponent(updatedValue);
         window.location.href = `index.html?updatedMessage=${encodeBack}&updatedIndex=${originalIndex}`;
+      }
+
+      function back() {
+        window.location.href = "index.html"
       }
 
       // Allow pressing Enter to save changes
